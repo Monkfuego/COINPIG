@@ -9,7 +9,10 @@ import { mockCoins, getMockDataWithLegitimacy } from '../utils/mockData';
 export const Dashboard: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { tweets, redditPosts, newsArticles } = getMockDataWithLegitimacy();
+  const mockData = getMockDataWithLegitimacy();
+  const tweets = mockData.filter((item) => item.platform === 'twitter') as Tweet[];
+  const redditPosts = mockData.filter((item) => item.platform === 'reddit') as RedditPost[];
+  const newsArticles = mockData.filter((item) => item.platform === 'news') as NewsArticle[];
   
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -48,7 +51,7 @@ export const Dashboard: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                © 2025 Crypto Airdrop Intel (Cool Bug). All rights reserved.
+                © 2025 Crypto Airdrop Intel (Coin Pig). All rights reserved.
               </p>
             </div>
             <div className="flex space-x-6">

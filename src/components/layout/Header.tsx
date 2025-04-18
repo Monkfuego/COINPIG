@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bug, Search, LogOut, User } from 'lucide-react';
+import { PiggyBank, Search, LogOut, User } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { ThemeToggle } from '../ui/ThemeToggle';
 import { useAuth } from '../../context/AuthContext';
@@ -19,9 +19,9 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSearch, isSearchOpen }) 
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center">
           <a href="/" className="flex items-center mr-6">
-            <Bug className="h-6 w-6 text-primary-600 dark:text-primary-400 mr-2" />
+            <PiggyBank className="h-6 w-6 text-primary-600 dark:text-primary-400 mr-2" />
             <span className="font-bold text-lg text-neutral-900 dark:text-white">
-              Cool Bug
+              Coin Pig - Oink!
             </span>
           </a>
           

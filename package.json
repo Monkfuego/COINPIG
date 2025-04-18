@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.2.0",
+    "@google/generative-ai": "^0.2.1",
     "axios": "^1.6.2",
     "cheerio": "^1.0.0-rc.12",
     "clsx": "^2.0.0",

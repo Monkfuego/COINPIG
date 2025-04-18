@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Bug } from 'lucide-react';
+import { PiggyBank } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ export const HeroSection: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="mb-6 inline-flex items-center justify-center"
         >
-          <Bug className="h-12 w-12 text-primary-600 dark:text-primary-400" />
+          <PiggyBank className="h-12 w-12 text-primary-600 dark:text-primary-400" />
         </motion.div>
         
         <motion.h1
