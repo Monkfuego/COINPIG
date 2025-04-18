@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 const genAI = new GoogleGenerativeAI('AIzaSyDwNvyL2zSSZblp9BuASeUiVuUoDEq6LfY');
 
 export async function getCryptoAnalysis(coin: string) {
-  const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+  const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
   
   const prompt = `Analyze the current state and future prospects of ${coin}. Include:
   1. Current market position
@@ -23,7 +23,7 @@ export async function getCryptoAnalysis(coin: string) {
 }
 
 export async function checkAirdropLegitimacy(airdropDetails: string) {
-  const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+  const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
   
   const prompt = `Analyze this crypto airdrop for legitimacy. Details: ${airdropDetails}
   Consider:
@@ -37,7 +37,14 @@ export async function checkAirdropLegitimacy(airdropDetails: string) {
   try {
     const result = await model.generateContent(prompt);
     const response = await result.response;
-    return JSON.parse(response.text());
+    const parsedResponse = JSON.parse(response.text());
+
+    // Format the response line by line with bold text
+    return {
+      isLegitimate: parsedResponse.isLegitimate,
+      confidence: parsedResponse.confidence,
+      reason: parsedResponse.reason.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>') // Replace **bold** with <b>bold</b>
+    };
   } catch (error) {
     console.error('Error checking airdrop legitimacy:', error);
     return {
@@ -49,11 +56,17 @@ export async function checkAirdropLegitimacy(airdropDetails: string) {
 }
 
 export async function chatWithCoinPig(message: string) {
-  const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+  const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
   
-  const prompt = `You are CoinPig, a friendly and knowledgeable crypto assistant. 
-  Respond to this user query about cryptocurrency: ${message}
-  Be helpful, accurate, and maintain a friendly tone.`;
+  const systemPrompt = `You are CoinPig, a friendly and knowledgeable crypto assistant. Your responses should be:
+  1. Informative but concise
+  2. Focus on factual data and market analysis
+  3. Avoid speculation or financial advice
+  4. Use a friendly, helpful tone
+  5. Include relevant market data when discussing prices
+  6. Explain technical terms when used`;
+
+  const prompt = `${systemPrompt}\n\nUser question: ${message}`;
 
   try {
     const result = await model.generateContent(prompt);
