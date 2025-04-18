@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSearch, isSearchOpen }) 
           <a href="/" className="flex items-center mr-6">
             <PiggyBank className="h-6 w-6 text-primary-600 dark:text-primary-400 mr-2" />
             <span className="font-bold text-lg text-neutral-900 dark:text-white">
-              Coin Pig - Oink!
+              Oink!
             </span>
           </a>
           
